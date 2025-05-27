@@ -10,7 +10,6 @@ Olvídate de ajustar la configuración de energía de tu sistema. Con un solo cl
 
 ## ✨ Características
 
-* **Simple y Directo:** Interfaz de usuario minimalista con un único botón de "Activar" / "Desactivar".
 * **Multiplataforma:** Funciona en cualquier navegador moderno compatible con la API de Wake Lock, tanto en escritorio como en dispositivos móviles.
 * **Eficiente:** Utiliza la API nativa del navegador para una gestión óptima del estado de la pantalla.
 * **De Código Abierto:** Totalmente transparente y extensible.
@@ -19,9 +18,8 @@ Olvídate de ajustar la configuración de energía de tu sistema. Con un solo cl
 
 ## 🚀 ¿Cómo usarlo?
 
-1.  **Visita la aplicación:** Accede a la URL de tu aplicación (por ejemplo: `https://activescreen.bitsar.com.ar`).
-2.  **Haz clic en "Activar":** Pulsa el botón principal en la pantalla. Tu navegador podría pedirte permiso para mantener la pantalla activa.
-3.  **¡Listo!** Tu pantalla se mantendrá encendida mientras la aplicación esté en primer plano. Si cambias de pestaña o minimizas el navegador, el bloqueo de pantalla se liberará automáticamente.
+1.  **Visita la aplicación:** Accede a la URL de tu aplicación `https://activescreen.bitsar.com.ar`.
+2.  **¡Listo!** Tu pantalla se mantendrá encendida mientras la aplicación esté en primer plano. Si cambias de pestaña o minimizas el navegador, el bloqueo de pantalla se liberará automáticamente.
 
 ---
 
