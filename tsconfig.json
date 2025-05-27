@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Lenguaje y Entorno */
+    "target": "es2020", // Recomendado para navegadores modernos. También puedes usar "esnext"
+    "lib": ["dom", "dom.iterable", "esnext"], // ESENCIAL: Incluye tipos para DOM y características modernas de JS
+    "jsx": "react-jsx", // Correcto para React 17+ con el nuevo runtime de JSX
+
+    /* Módulos */
+    "module": "esnext", // ESENCIAL: Permite módulos ES para bundlers
+    "moduleResolution": "node", // Cómo TypeScript resuelve módulos (para node_modules)
+    "resolveJsonModule": true, // Permite importar archivos .json
+
+    /* Soporte de JavaScript */
+    "allowJs": true, // Permite archivos .js en tu proyecto (importante para migración gradual)
+
+    /* Interoperabilidad y Consistencia */
+    "esModuleInterop": true, // Mejora la compatibilidad entre CommonJS y módulos ES
+    "forceConsistentCasingInFileNames": true, // Asegura consistencia en mayúsculas/minúsculas en nombres de archivo
+    "isolatedModules": true, // Importante para herramientas como Babel/ESBuild que compilan archivo por archivo
+    "noEmit": true, // ESENCIAL: TypeScript no generará archivos JS, tu bundler (CRA, Vite) lo hará
+
+    /* Verificación de Tipos */
+    "strict": true, // Habilita todas las opciones de verificación de tipos estrictas (muy recomendado)
+    "noFallthroughCasesInSwitch": true, // Previene errores de "fallthrough" en switch
+    "skipLibCheck": true // Omite la verificación de tipos para los archivos de declaración de librerías (más rápido)
+  },
+  "include": ["src"], // SOLO incluye la carpeta 'src' para la compilación
+  "exclude": ["node_modules"] // Excluye la carpeta 'node_modules'
+}
