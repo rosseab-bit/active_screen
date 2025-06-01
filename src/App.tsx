@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import { io, Socket } from 'socket.io-client';
 
 function useWakeLock() {
   const wakeLockRef = useRef<WakeLockSentinel | null>(null);
@@ -34,12 +35,55 @@ function useWakeLock() {
 }
 
 const App: React.FC = () => {
+  const [userCount, setUserCount] = useState<number>(0);
+
+  const fetchToken = async (): Promise<string> => {
+    const res = await fetch('http://192.168.0.128:3001/api/token');
+    const data = await res.json();
+    return data.token;
+  }
+
+  useEffect(() => {
+    let socket: Socket;
+
+    const startSocket = async () => {
+      const token = await fetchToken();
+
+      socket = io('http://192.168.0.128:3001', {
+        auth: {
+          token
+        }
+      });
+
+      socket.on('connect', () => {
+        console.log('🟢 Socket conectado');
+      });
+
+      socket.on('userCount', (count) => {
+        console.log('🔁 Usuarios online:', count);
+        setUserCount(count);
+      });
+
+      socket.on('disconnect', () => {
+        console.log('🔴 Socket desconectado');
+      });
+    };
+
+    startSocket();
+
+    return () => {
+      if (socket) socket.disconnect();
+    };
+  }, []);
+
   useWakeLock();
+
   return (
     <div className='container-screen'>
       <h1>Pantalla activa <span className='sun-icon'>🔆</span></h1>
+      <span>Mentes creativas en pausa 🎈 : {userCount}</span>
     </div>
   );
-}
+};
 
 export default App;
