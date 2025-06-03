@@ -36,11 +36,24 @@ function useWakeLock() {
 
 const App: React.FC = () => {
   const [userCount, setUserCount] = useState<number>(0);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true';
+  });
 
-  const fetchToken = async (): Promise<string> => {
-    const res = await fetch('http://192.168.0.128:3001/api/token');
-    const data = await res.json();
-    return data.token;
+  const toggleDarkMode = () => {
+    const newValue = !darkMode;
+    setDarkMode(newValue);
+    localStorage.setItem('darkMode', newValue.toString());
+  };
+  const fetchToken = async () => {
+    try{
+      const res = await fetch('https://activescreenapi.bitsar.com.ar/api/token');
+      const data = await res.json();
+      return data.token;
+
+    }catch(err){
+      console.error('Error al solicitar users:', err);
+    }
   }
 
   useEffect(() => {
@@ -49,7 +62,7 @@ const App: React.FC = () => {
     const startSocket = async () => {
       const token = await fetchToken();
 
-      socket = io('http://192.168.0.128:3001', {
+      socket = io('https://activescreenapi.bitsar.com.ar', {
         auth: {
           token
         }
@@ -79,9 +92,12 @@ const App: React.FC = () => {
   useWakeLock();
 
   return (
-    <div className='container-screen'>
+    <div className={`container-screen ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+      <button className="toggle-button" onClick={toggleDarkMode}>
+        {darkMode ? '☀️ Modo claro' : '🌙 Modo oscuro'}
+      </button>
       <h1>Pantalla activa <span className='sun-icon'>🔆</span></h1>
-      <span>Mentes creativas en pausa 🎈 : {userCount}</span>
+      <span>{(userCount > 0 ? userCount: '')} 😎 Mentes creativas en pausa 🎈 </span>
     </div>
   );
 };
