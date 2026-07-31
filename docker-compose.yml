@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  active_screen:
+    container_name: active_screen
+    build: .
+    image: active_screen
+
+    restart: unless-stopped
+
+    ports:
+      - "3005:80"
+
+    networks:
+      - active-screen-network
+
+networks:
+  active-screen-network:
+    name: active-screen-network
+    driver: bridge
