@@ -56,7 +56,7 @@ const App: React.FC = () => {
     }
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     let socket: Socket;
 
     const startSocket = async () => {
@@ -87,7 +87,7 @@ const App: React.FC = () => {
     return () => {
       if (socket) socket.disconnect();
     };
-  }, []);
+  }, []);*/
 
   useWakeLock();
 
